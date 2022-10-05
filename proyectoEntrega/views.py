@@ -13,17 +13,19 @@ from flia.models import Familia
 
 def crear_persona(request):
     
-    persona1 = Familia(nombre='Ricardo' , apellido='Darin' , edad=random.randrange(1, 99) , fecha_nacimiento=datetime.now())
-    persona2 = Familia(nombre='Patricio' , apellido='Darin' , edad=random.randrange(1, 99) , fecha_nacimiento=datetime.now())                  
-    persona3 = Familia(nombre='Josefina' , apellido='Darin' , edad=random.randrange(1, 99) , fecha_nacimiento=datetime.now())
+    persona1 = Familia(nombre='Ricardo' , apellido='Darin' , edad = 60 , fecha_nacimiento=datetime(1962, 5, 3))
+    persona2 = Familia(nombre='Patricio' , apellido='Darin' , edad = 45, fecha_nacimiento=datetime(1977, 8, 1))      
+    persona3 = Familia(nombre='Josefina' , apellido='Darin' , edad = 8, fecha_nacimiento=datetime(2014, 9, 21))
                        
     persona1.save()
     persona2.save()
     persona3.save()  
     
     
-    template = loader.get_template('crear_personas.html')
-    template_renderizado = template.render({})                      
+    template = loader.get_template('crear_persona.html')
+    template_renderizado = template.render({'personas' : persona1 })     
+    template_renderizado = template.render({'personas' : persona2 })  
+    template_renderizado = template.render({'personas' : persona3 })                   
     
     
     return HttpResponse(template_renderizado)
